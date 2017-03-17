@@ -1,0 +1,27 @@
+{
+  "name": "go-chuck",
+  "version": "1.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nurlansu/go-chuck.git"
+  },
+  "scripts": {
+    "autoprefixer": "postcss -c package.json -r ./public/static/css/*.css -u autoprefixer",
+    "sass": "wt compile ./public/source/sass/*.scss -b ./public/static/css/ -s compressed",
+    "sass:watch": "wt watch ./public/source/sass/*.scss -b ./public/static/css/ -s compressed",
+    "build": "npm run sass && npm run autoprefixer"
+  },
+  "autoprefixer": {
+    "browsers": "> 1%, last 2 versions, ie >= 9"
+  },
+  "dependencies": {
+
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.7.7",
+    "postcss-cli": "^2.6.0"
+  },
+  "author": "Nurlan Su",
+  "license": "MIT"
+}

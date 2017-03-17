@@ -1,0 +1,109 @@
+$purple: #fb83fa;
+$aqua: #31bcb8;
+$red: #fc5c3c;
+$orange: #ffb638;
+$green: #AAFFA9;
+$cyan: #06e5de;
+
+@font-face {
+  font-family: 'FF Kievit Slab';
+  font-style: normal;
+  font-weight: normal;
+  src: url("//fonts.nurlan.co/kievit/slab/reg.eot");
+  src: local("FF Kievit Slab Regular"), local("FFKievitSlab-Regular"),
+       url("//fonts.nurlan.co/kievit/slab/reg.eot?#iefix") format("embedded-opentype"),
+       url("//fonts.nurlan.co/kievit/slab/reg.woff2") format("woff2"),
+       url("//fonts.nurlan.co/kievit/slab/reg.woff") format("woff"),
+       url("//fonts.nurlan.co/kievit/slab/reg.ttf") format("truetype"),
+       url("//fonts.nurlan.co/kievit/slab/reg.svg#reg") format("svg");
+}
+
+html, body {
+  height: 100%
+}
+
+body {
+  color: #000;
+  font-family: "FF Kievit Slab", Helvetica, Arial, sans-serif;
+  font-size: 26pt;
+  margin: 0
+}
+
+.container {
+  height: 100%;
+  display: table;
+  width: 700px;
+  margin: 0 auto
+}
+
+.quote {
+  display: table-cell;
+  height: 100%;
+  vertical-align: middle
+}
+
+.buttons {
+  display: table;
+  margin: 0 auto;
+}
+
+@mixin bggrad($c1, $c2, $angle: 155) {
+  background: linear-gradient(#{$angle}deg, $c1 0%, $c2 100%);
+} 
+
+@mixin borgrad($c1, $c2, $angle: 155) {
+  border-image: linear-gradient(#{$angle}deg, $c1 0%, $c2 100%) 1 round;
+} 
+
+@mixin someColor($c1, $c2) {
+  @include borgrad($c1, $c2, 155);
+  @include bggrad($c1, $c2, 155);
+  &:hover {
+    box-shadow: 
+      0 0 0px 1px rgba(255,255,255,0.5),
+      2px 2px 6px rgba(red($c2), green($c2), blue($c2),0.4),
+      -2px -2px 6px rgba(red($c1), green($c1), blue($c1),0.4);
+  }
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.boxy {
+  font-weight: 400;
+  font-size: .45em;
+  color: rgba(255,255,255,0);
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0.6em 1.6em;
+  margin: 0 20px;
+  border-style: solid;
+  border-width: 2px;
+  transition: all 0.2s ease;
+  &:hover {
+    color: rgba(255, 255, 255,0.1);
+    text-shadow: 0 0 1px rgba(255, 255, 255,0.4); 
+  }
+  &.red {
+    @include someColor($red, $orange);
+  }
+  &.green {
+    @include someColor($cyan, $green);
+  }
+}
+
+@media screen and (min-width: 550px) and (max-width: 750px) {
+  .container {
+    width: 500px
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .container {
+    width: 90%
+  }
+
+  #fact {
+    font-size: 28px;
+  }
+}
