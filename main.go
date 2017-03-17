@@ -11,20 +11,18 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-// DataBase is the actual db.json
-type DataBase struct {
-	Value []Fact `json:"value"`
+type dataBase struct {
+	Value []fact `json:"value"`
 }
 
-// Fact is the actual Chuck Norris fact
-type Fact struct {
+type fact struct {
 	ID   float64 `json:"id"`
 	Fact string  `json:"fact"`
 }
 
 var (
 	templates = template.Must(template.ParseFiles("templates/index.tmpl"))
-	db        DataBase
+	db        dataBase
 )
 
 func main() {
@@ -41,7 +39,7 @@ func init() {
 	db = loadData()
 }
 
-func loadData() DataBase {
+func loadData() dataBase {
 	data, err := ioutil.ReadFile("data/db.json")
 	if err != nil {
 		log.Fatalf("Error: %v", err)
@@ -55,7 +53,7 @@ func loadData() DataBase {
 	return db
 }
 
-func getTheFact(id int) (Fact, error) {
+func getTheFact(id int) (fact, error) {
 	if id == 0 {
 		id = rand.Intn(539)
 	}
