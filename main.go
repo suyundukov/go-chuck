@@ -67,7 +67,7 @@ func faviconHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params)
 
 func idHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	id := p.ByName("id")
-	if id, err := strconv.Atoi(id); id < 539 && err == nil {
+	if id, err := strconv.Atoi(id); id < 540 && err == nil {
 		fact, _ := getTheFact(id)
 		templates.ExecuteTemplate(w, "index.tmpl", fact)
 	} else {
