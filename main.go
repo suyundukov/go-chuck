@@ -42,12 +42,12 @@ func init() {
 func loadData() dataBase {
 	data, err := ioutil.ReadFile("data/db.json")
 	if err != nil {
-		log.Fatalf("Error: %v", err)
+		log.Fatalf("Error, loading database: %v", err)
 	}
 
 	err = db.UnmarshalJSON(data)
 	if err != nil {
-		log.Fatalf("Error: %v", err)
+		log.Fatalf("Error, parsing database: %v", err)
 	}
 
 	return db
@@ -84,7 +84,7 @@ func apiHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	fact, _ := getTheFact(0)
 	res, err := fact.MarshalJSON()
 	if err != nil {
-		log.Fatalf("Error: %v", err)
+		log.Fatalf("Error, marshalling JSON: %v", err)
 	}
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(res)
