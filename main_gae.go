@@ -24,8 +24,8 @@ type fact struct {
 }
 
 var (
-	templates = template.Must(template.ParseFiles("templates/index.tmpl"))
-	db        dataBase
+	t  = template.Must(template.ParseFiles("public/templates/index.tmpl"))
+	db dataBase
 )
 
 func init() {
@@ -74,7 +74,7 @@ func idHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	id := p.ByName("id")
 	if id, err := strconv.Atoi(id); id < 540 && err == nil {
 		fact, _ := getTheFact(id)
-		templates.ExecuteTemplate(w, "index.tmpl", fact)
+		t.ExecuteTemplate(w, "index.tmpl", fact)
 	} else {
 		http.Error(w, "404 page not found", 404)
 	}
@@ -82,7 +82,7 @@ func idHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
 func mainHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	fact, _ := getTheFact(0)
-	templates.ExecuteTemplate(w, "index.tmpl", fact)
+	t.ExecuteTemplate(w, "index.tmpl", fact)
 }
 
 func apiHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
