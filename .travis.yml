@@ -1,0 +1,34 @@
+language: go
+
+go:
+  - 1.8
+
+env:
+  - NODE_VERSION=node
+
+notifications:
+  email:
+    recipients:
+      - mail@nurlan.co
+    on_success: never
+    on_failure: change
+
+before_install:
+  - openssl aes-256-cbc -K $encrypted_cf991cd2fa9b_key -iv $encrypted_cf991cd2fa9b_iv -in service-account.json.enc -out service-account.json -d
+  - nvm install $NODE_VERSION
+  - nvm use $NODE_VERSION
+
+install:
+  - go get ./...
+  - go get -u github.com/tdewolff/minify/cmd/minify
+  - npm install
+
+script:
+  - ./scripts/build.sh
+
+deploy:
+  provider: gae
+  skip_cleanup: true
+  on: master
+  project: go-chuck
+  version: v1

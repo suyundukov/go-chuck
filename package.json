@@ -9,8 +9,10 @@
   "scripts": {
     "autoprefixer": "postcss -c package.json -r ./public/static/css/*.css -u autoprefixer",
     "sass": "wt compile ./public/source/sass/*.scss -b ./public/static/css/ -s compressed",
+    "sass:ci": "node-sass ./public/source/sass/*.scss -o ./public/static/css/ --output-style compressed",
     "sass:watch": "wt watch ./public/source/sass/*.scss -b ./public/static/css/ -s compressed",
-    "build": "npm run sass && npm run autoprefixer"
+    "build": "npm run sass && npm run autoprefixer",
+    "build:ci": "npm run sass:ci && npm run autoprefixer"
   },
   "autoprefixer": {
     "browsers": "> 1%, last 2 versions, ie >= 9"
@@ -19,8 +21,9 @@
 
   },
   "devDependencies": {
-    "autoprefixer": "^6.7.7",
-    "postcss-cli": "^2.6.0"
+    "autoprefixer": "^7.1.0",
+    "node-sass": "^4.5.2",
+    "postcss-cli": "^4.0.0"
   },
   "author": "Nurlan Su",
   "license": "MIT"

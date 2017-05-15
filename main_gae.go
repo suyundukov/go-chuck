@@ -1,6 +1,6 @@
-// +build !appengine
+// +build appengine
 
-package main
+package chuck
 
 import (
 	"encoding/json"
@@ -28,7 +28,7 @@ var (
 	db        dataBase
 )
 
-func main() {
+func init() {
 	r := httprouter.New()
 
 	r.ServeFiles("/public/static/*filepath", http.Dir("public/static/"))
@@ -37,7 +37,7 @@ func main() {
 	r.GET("/api", apiHandler)
 	r.GET("/", mainHandler)
 
-	log.Fatal(http.ListenAndServe(":8080", r))
+	http.Handle("/", r)
 }
 
 func init() {
