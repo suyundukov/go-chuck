@@ -46,7 +46,7 @@ And that's all. Normally you could see the app running on http://localhost:8080
 
 ## Dependencies
 
-This app uses [httprouter][router] for routing and [easyjson][json] for marshalling and unmarshaling.
+This app uses [httprouter][router] for routing.
 
 ## Demo
 

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"html/template"
 	"io/ioutil"
 	"log"
@@ -45,7 +46,7 @@ func loadData() dataBase {
 		log.Fatalf("Error, loading database: %v", err)
 	}
 
-	err = db.UnmarshalJSON(data)
+	err = json.Unmarshal(data, &db)
 	if err != nil {
 		log.Fatalf("Error, parsing database: %v", err)
 	}
@@ -82,7 +83,7 @@ func mainHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
 func apiHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	fact, _ := getTheFact(0)
-	res, err := fact.MarshalJSON()
+	res, err := json.Marshal(fact)
 	if err != nil {
 		log.Fatalf("Error, marshalling JSON: %v", err)
 	}
