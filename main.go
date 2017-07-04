@@ -1,5 +1,3 @@
-// +build !appengine
-
 package main
 
 import (
@@ -9,6 +7,7 @@ import (
 	"log"
 	"math/rand"
 	"net/http"
+	"os"
 	"strconv"
 
 	"github.com/julienschmidt/httprouter"
@@ -24,8 +23,9 @@ type fact struct {
 }
 
 var (
-	t  = template.Must(template.ParseFiles("public/templates/index.tmpl"))
-	db dataBase
+	t    = template.Must(template.ParseFiles("public/templates/index.tmpl"))
+	db   dataBase
+	port string
 )
 
 func main() {
@@ -37,11 +37,16 @@ func main() {
 	r.GET("/api", apiHandler)
 	r.GET("/", mainHandler)
 
-	log.Fatal(http.ListenAndServe(":8080", r))
+	log.Fatal(http.ListenAndServe(":"+port, r))
 }
 
 func init() {
 	db = loadData()
+
+	port = os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
 }
 
 func loadData() dataBase {

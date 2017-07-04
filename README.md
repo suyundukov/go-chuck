@@ -50,7 +50,7 @@ This app uses [httprouter][router] for routing.
 
 ## Demo
 
-The live version can be found on https://chuck.nurlan.co
+The live version can be found on https://go-chuck.herokuapp.com/
 
 ## License
 
