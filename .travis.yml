@@ -1,7 +1,7 @@
 language: go
 
 go:
-  - 1.8
+  - 1.8.3
 
 env:
   - NODE_VERSION=node
@@ -18,7 +18,6 @@ before_install:
   - nvm use $NODE_VERSION
 
 install:
-  - go get ./...
   - go get -u github.com/tdewolff/minify/cmd/minify
   - npm install
 
@@ -27,6 +26,5 @@ script:
 
 deploy:
   provider: heroku
-  app: go-chuck
-  api_key: $HEROKU
+  api_key: $HEROKU_PASSWORD
   skip_cleanup: true

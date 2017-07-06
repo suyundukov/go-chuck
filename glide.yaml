@@ -1,4 +1,3 @@
-package: go-chuck
+package: github.com/nurlansu/go-chuck
 import:
 - package: github.com/julienschmidt/httprouter
-  version: ^1.1.0
