@@ -1,6 +1,6 @@
 {
   "name": "go-chuck",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "repository": {
     "type": "git",
@@ -21,9 +21,9 @@
 
   },
   "devDependencies": {
-    "autoprefixer": "^7.1.0",
-    "node-sass": "^4.5.2",
-    "postcss-cli": "^4.0.0"
+    "autoprefixer": "^9.0.1",
+    "node-sass": "^4.9.2",
+    "postcss-cli": "^6.0.0"
   },
   "author": "Nurlan Su",
   "license": "MIT"

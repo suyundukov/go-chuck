@@ -9,3 +9,7 @@
 [prune]
   go-tests = true
   unused-packages = true
+
+[metadata.heroku]
+root-package = "github.com/nurlansu/go-chuck"
+gp-version = "1.10.3"

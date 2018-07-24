@@ -1,7 +1,7 @@
 language: go
 
 go:
-  - 1.8.3
+  - 1.10.3
 
 env:
   - NODE_VERSION=node
@@ -9,7 +9,7 @@ env:
 notifications:
   email:
     recipients:
-      - mail@nurlan.co
+      - dev@nurlan.co
     on_success: never
     on_failure: change
 
