@@ -65,7 +65,7 @@ func Open() *sql.DB {
 
 func createTable(db *sql.DB) {
 	sql := `
-	CREATE TABLE IF NOT EXISTS facts(
+	CREATE TABLE IF NOT EXISTS facts (
 		id INTEGER NOT NULL PRIMARY KEY,
 		fact TEXT
 	);

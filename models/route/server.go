@@ -16,6 +16,7 @@ func StartServer(db *sql.DB) {
 	r.ServeFiles("/public/static/*filepath", http.Dir("public/static/"))
 	r.GET("/favicon.ico", faviconHandler())
 	r.GET("/fact/:id", idHandler(db))
+	r.GET("/api/:id", apiHandler(db))
 	r.GET("/api", apiHandler(db))
 	r.GET("/", mainHandler(db))
 
