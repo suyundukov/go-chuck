@@ -17,7 +17,7 @@ func StartServer(db *sql.DB) {
 	r.GET("/favicon.ico", faviconHandler())
 	r.GET("/fact/:id", idHandler(db))
 	r.GET("/api/:id", apiHandler(db))
-	r.GET("/api", apiHandler(db))
+	r.GET("/api/", apiHandler(db))
 	r.GET("/", mainHandler(db))
 
 	log.Fatal(http.ListenAndServe(":"+initPort(), r))

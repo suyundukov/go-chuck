@@ -8,7 +8,8 @@ function randomFact() {
   req.open('GET', '/api')
   req.send()
   req.onload = function() {
-    resValue = JSON.parse(req.responseText)
+    res = JSON.parse(req.responseText)
+    resValue = res.value
     chuckFact = resValue.fact
     fact.innerHTML = chuckFact
     url = resValue.id

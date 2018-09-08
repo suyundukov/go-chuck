@@ -2,9 +2,8 @@ package route
 
 import (
 	"database/sql"
-	"encoding/json"
+	"errors"
 	"html/template"
-	"log"
 	"math/rand"
 	"net/http"
 	"strconv"
@@ -24,50 +23,68 @@ func faviconHandler() httprouter.Handle {
 	}
 }
 
+// Handler for "/" (home) route
+func mainHandler(db *sql.DB) httprouter.Handle {
+	return func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+		if fact, err := getRandomFact(db); err == nil {
+			t.ExecuteTemplate(w, "index.tmpl", fact)
+		} else {
+			http.Error(w, err.Error(), 500)
+		}
+	}
+}
+
 // Handler for "/fact/:id" route
 func idHandler(db *sql.DB) httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 		id := p.ByName("id")
-		if id, err := strconv.Atoi(id); id > 0 && id < 540 && err == nil {
-			fact, _ := getTheFact(db, id)
+		if fact, err := getTheFact(db, id); err == nil {
 			t.ExecuteTemplate(w, "index.tmpl", fact)
 		} else {
-			http.Error(w, "404 page not found", 404)
+			http.Error(w, err.Error(), 404)
 		}
 	}
 }
 
-// Handler for "/" (home) route
-func mainHandler(db *sql.DB) httprouter.Handle {
-	return func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-		fact, _ := getTheFact(db, 0)
-		t.ExecuteTemplate(w, "index.tmpl", fact)
-	}
-}
-
-// Handler for "/api" route
+// Handler for "/api" and "/api/:id" route
 func apiHandler(db *sql.DB) httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-		var fact database.Item
+		var res Response
+		var err error
 		id := p.ByName("id")
-		if id, err := strconv.Atoi(id); id > 0 && id < 540 && err == nil {
-			fact, _ = getTheFact(db, id)
+
+		if id == "" {
+			res.Value, err = getRandomFact(db)
 		} else {
-			fact, _ = getTheFact(db, 0)
+			res.Value, err = getTheFact(db, id)
 		}
-		res, err := json.Marshal(fact)
+
 		if err != nil {
-			log.Fatalf("Error, marshalling JSON: %v", err)
+			res.Error = err.Error()
 		}
+
+		// Marshalling json reponse
+		resp := res.Serialize()
+
+		// Setting response headers and writing the response
 		w.Header().Set("Content-Type", "application/json")
-		w.Write(res)
+		w.Write(resp)
 	}
 }
 
-func getTheFact(db *sql.DB, id int) (database.Item, error) {
-	if id == 0 {
-		id = rand.Intn(539)
+// getRandomFact returns random Fact from database
+func getRandomFact(db *sql.DB) (database.Item, error) {
+	return database.GetItem(db, rand.Intn(539))
+}
+
+// getTheFact returns Fact specified in 's' from database
+func getTheFact(db *sql.DB, s string) (database.Item, error) {
+	id, err := strconv.Atoi(s)
+	if err != nil {
+		return database.Item{}, err
+	} else if id < 0 || id > 540 {
+		return database.Item{}, errors.New("no fact with this id :(")
 	}
 
-	return database.GetItem(db, id), nil
+	return database.GetItem(db, id)
 }
