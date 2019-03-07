@@ -11,5 +11,5 @@
   unused-packages = true
 
 [metadata.heroku]
-root-package = "github.com/nurlansu/go-chuck"
-gp-version = "1.10.3"
+  root-package = "github.com/nurlansu/go-chuck"
+  gp-version = "1.12"
