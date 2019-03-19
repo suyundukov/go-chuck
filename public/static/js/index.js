@@ -1,5 +1,5 @@
 (function() {
-  var btn = document.querySelector('.boxy.green');
+  var btn = document.querySelector('.btn.blue');
   var checkbox = document.querySelector('#switch');
   var fact = document.querySelector('.fact');
   var link = document.querySelector('.link');

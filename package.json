@@ -2,6 +2,8 @@
   "name": "go-chuck",
   "version": "1.0.1",
   "description": "",
+  "license": "MIT",
+  "author": "Nurlan Su",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nurlansu/go-chuck.git"
@@ -14,17 +16,13 @@
     "build": "npm run sass && npm run autoprefixer",
     "build:ci": "npm run sass:ci && npm run autoprefixer"
   },
+  "dependencies": {},
+  "devDependencies": {
+    "autoprefixer": "^9.5.0",
+    "node-sass": "^4.11.0",
+    "postcss-cli": "^6.1.2"
+  },
   "autoprefixer": {
     "browsers": "> 1%, last 2 versions, ie >= 9"
-  },
-  "dependencies": {
-
-  },
-  "devDependencies": {
-    "autoprefixer": "^9.0.1",
-    "node-sass": "^4.9.2",
-    "postcss-cli": "^6.0.0"
-  },
-  "author": "Nurlan Su",
-  "license": "MIT"
+  }
 }
