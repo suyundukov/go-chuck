@@ -9,8 +9,8 @@ import (
 
 // Response is a struct returned as a response
 type Response struct {
-	Error string        `json:"error"`
-	Value database.Item `json:"value"`
+	Error string         `json:"error,omitempty"`
+	Value *database.Item `json:"value,omitempty"`
 }
 
 // Serialize returns the json encoding of 'Response'

@@ -16,24 +16,24 @@ type Item struct {
 }
 
 // GetItem returns item from database
-func GetItem(db *sql.DB, id int) (Item, error) {
+func GetItem(db *sql.DB, id int) (*Item, error) {
 	res := Item{}
 	sql := "SELECT * FROM facts WHERE id = ?"
 
 	stmt, err := db.Prepare(sql)
 	if err != nil {
 		e := fmt.Sprintf("Error, preparing statement : %v", err)
-		return res, errors.New(e)
+		return nil, errors.New(e)
 	}
 	defer stmt.Close()
 
 	err = stmt.QueryRow(id).Scan(&res.ID, &res.Fact)
 	if err != nil {
 		e := fmt.Sprintf("Error, getting item in DB : %v", err)
-		return res, errors.New(e)
+		return nil, errors.New(e)
 	}
 
-	return res, nil
+	return &res, nil
 }
 
 // PutItem puts item in database

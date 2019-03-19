@@ -73,17 +73,17 @@ func apiHandler(db *sql.DB) httprouter.Handle {
 }
 
 // getRandomFact returns random Fact from database
-func getRandomFact(db *sql.DB) (database.Item, error) {
+func getRandomFact(db *sql.DB) (*database.Item, error) {
 	return database.GetItem(db, rand.Intn(539))
 }
 
 // getTheFact returns Fact specified in 's' from database
-func getTheFact(db *sql.DB, s string) (database.Item, error) {
+func getTheFact(db *sql.DB, s string) (*database.Item, error) {
 	id, err := strconv.Atoi(s)
 	if err != nil {
-		return database.Item{}, err
+		return nil, err
 	} else if id < 0 || id > 540 {
-		return database.Item{}, errors.New("no fact with this id :(")
+		return nil, errors.New("no fact with this id :(")
 	}
 
 	return database.GetItem(db, id)
