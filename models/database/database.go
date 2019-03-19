@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 
+	// Importing Sqlite3 lib
 	_ "github.com/mattn/go-sqlite3"
 )
 

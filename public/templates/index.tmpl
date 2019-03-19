@@ -7,10 +7,10 @@
   <body>
     <div class="container">
       <div class="quote">
-        <p id="fact">{{ .Fact }}</p>
+        <p class="fact">{{ .Fact }}</p>
         <div class="buttons">
-          <div class="boxy green" id="btn">new one</div>
-          <a class="boxy red" id="permaLink" href="/fact/{{ .ID }}">permalink</a>
+          <div class="boxy green">new one</div>
+          <a class="boxy link red" href="/fact/{{ .ID }}">permalink</a>
         </div>
       </div>
       <div class="toggle">
