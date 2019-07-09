@@ -1,15 +1,4 @@
-@font-face {
-  font-family: 'FF Kievit Slab';
-  font-style: normal;
-  font-weight: normal;
-  src: url("//fonts.nurlan.co/kievit/slab/reg.eot");
-  src: local("FF Kievit Slab Regular"), local("FFKievitSlab-Regular"),
-       url("//fonts.nurlan.co/kievit/slab/reg.eot?#iefix") format("embedded-opentype"),
-       url("//fonts.nurlan.co/kievit/slab/reg.woff2") format("woff2"),
-       url("//fonts.nurlan.co/kievit/slab/reg.woff") format("woff"),
-       url("//fonts.nurlan.co/kievit/slab/reg.ttf") format("truetype"),
-       url("//fonts.nurlan.co/kievit/slab/reg.svg#reg") format("svg");
-}
+@import 'fonts';
 
 html, body {
   height: 100%;
@@ -63,20 +52,20 @@ body {
 }
 
 .blue {
-  background-color: #55acee;
+  background: #55acee;
   box-shadow: 0px 5px 0px 0px #3C93D5;
 
   &:hover {
-    background-color: #6FC6FF;
+    background: #6FC6FF;
   }
 }
 
 .red {
-  background-color: #e74c3c;
+  background: #e74c3c;
   box-shadow: 0px 5px 0px 0px #CE3323;
 
   &:hover {
-    background-color: #FF6656;
+    background: #FF6656;
   }
 }
 
@@ -86,10 +75,10 @@ body {
 	right: 10px;
 }
 
-input[type=checkbox]{
+input[type=checkbox] {
 	height: 0;
-	width: 0;
 	visibility: hidden;
+	width: 0;
 }
 
 label {
@@ -102,7 +91,7 @@ label {
 	border-radius: 20px;
   position: relative;
 
-  &:after {
+  &::after {
     content: '';
     position: absolute;
     top: 2px;
@@ -111,10 +100,10 @@ label {
     height: 16px;
     background: #fff;
     border-radius: 16px;
-    transition: 0.3s;
+    transition: .3s;
   }
 
-  &:active:after {
+  &:active::after {
 	  width: 20px;
   }
 }
@@ -122,7 +111,7 @@ label {
 input:checked + label {
   background: #2196F3;
 
-  &:after {
+  &::after {
 	  left: calc(100% - 2px);
 	  transform: translateX(-100%);
   }

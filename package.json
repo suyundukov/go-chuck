@@ -10,17 +10,15 @@
   },
   "scripts": {
     "autoprefixer": "postcss -c package.json -r ./public/static/css/*.css -u autoprefixer",
-    "sass": "wt compile ./public/source/sass/*.scss -b ./public/static/css/ -s compressed",
-    "sass:ci": "node-sass ./public/source/sass/*.scss -o ./public/static/css/ --output-style compressed",
-    "sass:watch": "wt watch ./public/source/sass/*.scss -b ./public/static/css/ -s compressed",
-    "build": "npm run sass && npm run autoprefixer",
-    "build:ci": "npm run sass:ci && npm run autoprefixer"
+    "sass": "node-sass ./public/source/sass/ -o ./public/static/css/ --output-style compressed",
+    "sass:watch": "node-sass ./public/source/sass/ -wo ./public/static/css/ --output-style compressed",
+    "build": "npm run sass && npm run autoprefixer"
   },
   "dependencies": {},
   "devDependencies": {
-    "autoprefixer": "^9.5.0",
-    "node-sass": "^4.11.0",
-    "postcss-cli": "^6.1.2"
+    "autoprefixer": "^9.6.1",
+    "node-sass": "^4.12.0",
+    "postcss-cli": "^6.1.3"
   },
   "autoprefixer": {
     "browsers": "> 1%, last 2 versions, ie >= 9"

@@ -2,7 +2,7 @@
 set -e
 
 # Building main stuff (npm)
-npm run build:ci
+npm run build
 
 # Minifying html files
 minify -r -o ./public/static/css/ --match=\.css ./public/static/css/
