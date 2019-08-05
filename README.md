@@ -55,7 +55,7 @@ The live version can be found on https://go-chuck.herokuapp.com/
 ## License
 
 <p align="center">
-  <a href="./LICENSE"><img src="https://i.nurlan.co/logo.svg" width="100%" height="128"></a>
+  <a href="./LICENSE"><img src="https://nurlan.co/cdn/logo.svg" width="100%" height="128"></a>
   <a href="./LICENSE"><strong>MIT</strong></a>
 </p>
 
